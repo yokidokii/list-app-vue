@@ -14,7 +14,7 @@ export default new Vuex.Store({
     pagination: {
       //defaults
       page: 1,
-      lastPage: 2,
+      lastPage: constants.DEFAULT_LAST_PAGE,
     },
     loading: false,
   },
@@ -44,9 +44,14 @@ export default new Vuex.Store({
       );
 
       commit("setRepos", res.data);
-      commit("setPagination", {
-        lastPage: +parseLinkHeader(res.headers.link).last.page,
-      });
+
+      //should not commit change for lastPage if it is already set/changed
+      if (state.pagination.lastPage === constants.DEFAULT_LAST_PAGE) {
+        commit("setPagination", {
+          lastPage: +parseLinkHeader(res.headers.link).last.page,
+        });
+      }
+
       commit("setLoading", false);
     },
     async getRepoDetails({ commit }, repoName) {

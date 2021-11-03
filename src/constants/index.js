@@ -1,3 +1,4 @@
 const PER_PAGE = 10;
+const DEFAULT_LAST_PAGE = 2;
 
-export { PER_PAGE };
+export { PER_PAGE, DEFAULT_LAST_PAGE };

@@ -10,6 +10,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     repos: [],
+    details: {},
     pagination: {
       //defaults
       page: 1,
@@ -20,6 +21,9 @@ export default new Vuex.Store({
   mutations: {
     setRepos(state, repos) {
       state.repos = repos;
+    },
+    setDetails(state, details) {
+      state.details = details;
     },
     setPagination(state, pagination) {
       Object.keys(pagination).map((key) => {
@@ -45,10 +49,18 @@ export default new Vuex.Store({
       });
       commit("setLoading", false);
     },
+    async getRepoDetails({ commit }, repoName) {
+      //@TODO: add api handler to handle cancellable requests
+      let res = await axios(`${config.baseURL}/repos/vuejs/${repoName}`);
+      commit("setDetails", res.data);
+    },
   },
   getters: {
     getRepos(state) {
       return state.repos;
+    },
+    getRepoDetails(state) {
+      return state.details;
     },
   },
   modules: {},

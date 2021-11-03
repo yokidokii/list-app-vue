@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import RepoDetails from "../components/repo/detail";
+import RepoDetails from "../components/repo/RepoDetailsComponent";
 
 export default {
   name: "Details",

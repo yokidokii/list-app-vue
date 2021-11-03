@@ -9,7 +9,7 @@
         ripple
         v-for="repo in repos"
         :key="repo.id"
-        to="/details"
+        @click="goToDetails(repo.name)"
         class="list-item"
       >
         <v-list-item-content>
@@ -46,6 +46,14 @@ export default {
     },
     loading: function () {
       return this.$store.state.loading;
+    },
+  },
+  methods: {
+    goToDetails(name) {
+      this.$router.push({
+        name: "Details",
+        params: { repoName: name },
+      });
     },
   },
   watch: {

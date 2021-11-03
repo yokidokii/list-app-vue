@@ -24,7 +24,7 @@ const routes = [
     component: List,
   },
   {
-    path: "/details",
+    path: "/details/:repoName",
     name: "Details",
     component: Details,
   },

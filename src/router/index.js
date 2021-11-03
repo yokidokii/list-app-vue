@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import List from "../views/List.vue";
 import Login from "../views/Login.vue";
+import Details from "../views/Details.vue";
 import vueCookie from "vue-cookie";
 
 Vue.use(VueRouter);
@@ -21,6 +22,11 @@ const routes = [
     path: "/list",
     name: "List",
     component: List,
+  },
+  {
+    path: "/details",
+    name: "Details",
+    component: Details,
   },
 ];
 

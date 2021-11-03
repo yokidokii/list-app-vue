@@ -1,0 +1,9 @@
+.list-item {
+  &:hover {
+    background: $grey-100;
+  }
+
+  .list-title {
+    font-weight: 600;
+  }
+}

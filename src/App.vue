@@ -1,32 +1,46 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app id="inspire">
+    <v-app-bar app>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>List App</v-toolbar-title>
+    </v-app-bar>
+
+    <v-navigation-drawer v-model="drawer" fixed temporary>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="text-h6"> List App </v-list-item-title>
+          <v-list-item-subtitle> Vue 2/Vue Router/Vuex </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list dense nav>
+        <v-list-item v-for="item in items" :key="item.title" link>
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-main class="grey lighten-2">
+      <router-view></router-view>
+    </v-main>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+<script>
+export default {
+  data: () => ({
+    drawer: null,
+    items: [{ title: "Logout", icon: "mdi-logout-variant" }],
+    right: null,
+  }),
+};
+</script>

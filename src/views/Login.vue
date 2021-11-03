@@ -58,6 +58,11 @@ export default {
       window.location.href = "/list";
     },
   },
+  beforeMount() {
+    if (this.isAuthenticated) {
+      this.$router.push("list");
+    }
+  },
 };
 </script>
 

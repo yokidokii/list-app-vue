@@ -1,7 +1,10 @@
 <template>
-  <v-app id="inspire">
+  <v-app>
     <v-app-bar app>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        v-if="isAuthenticated"
+        @click="drawer = !drawer"
+      ></v-app-bar-nav-icon>
 
       <v-toolbar-title>List App</v-toolbar-title>
     </v-app-bar>
@@ -17,13 +20,13 @@
       <v-divider></v-divider>
 
       <v-list dense nav>
-        <v-list-item v-for="item in items" :key="item.title" link>
+        <v-list-item @click="logout" link>
           <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon>mdi-logout-variant</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title>Logout</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -36,11 +39,19 @@
 </template>
 
 <script>
+import auth from "./mixins/auth";
+
 export default {
   data: () => ({
     drawer: null,
-    items: [{ title: "Logout", icon: "mdi-logout-variant" }],
     right: null,
   }),
+  mixins: [auth],
+  methods: {
+    logout() {
+      this.$cookie.delete("token");
+      window.location.href = "/";
+    },
+  },
 };
 </script>

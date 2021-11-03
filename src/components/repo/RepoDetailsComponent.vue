@@ -46,7 +46,6 @@ export default {
   name: "RepoDetails",
   computed: {
     details: function () {
-      console.log("asdas: ", this.$store.state.details);
       return this.$store.state.details;
     },
   },

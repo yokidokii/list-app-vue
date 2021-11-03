@@ -10,8 +10,6 @@ Vue.use(vueCookie);
 
 const isAuthenticated = Vue.cookie.get("token") ? true : false;
 
-console.log(Vue.cookie.get("token"));
-
 const routes = [
   {
     path: "/",

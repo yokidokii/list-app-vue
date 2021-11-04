@@ -20,5 +20,15 @@ npm run build
 npm run lint
 ```
 
+### Or...you could also dockerize the app by running:
+```
+bash build.sh
+```
+
+### App runs at:
+```
+http://localhost:8080/
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
